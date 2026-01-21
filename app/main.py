@@ -1,14 +1,15 @@
+from __future__ import annotations
 class Distance:
-    def __init__(self, km):
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
-    def __str__(self):
+    def __str__(self) -> Distance:
         return f"Distance: {self.km} kilometers."
 
-    def __repr__(self):
+    def __repr__(self) -> Distance:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other):
+    def __add__(self, other) -> Distance:
         if isinstance(other, Distance):
             value = other.km
         else:
@@ -18,7 +19,7 @@ class Distance:
         other = Distance(self.km + value)
         return other
 
-    def __iadd__(self, other):
+    def __iadd__(self, other) -> Distance:
         if isinstance(other, Distance):
             value = other.km
         else:
@@ -29,24 +30,16 @@ class Distance:
         self.km += value
         return self
 
-    def __mul__(self, other: int | float):
-        if other == 0:
-            raise ZeroDivisionError
+    def __mul__(self, other: int | float) -> Distance:
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
-        else:
-            raise TypeError
 
 
-    def __truediv__(self, other: int | float):
-        if other == 0:
-            raise ZeroDivisionError
+    def __truediv__(self, other: int | float) -> Distance:
         if isinstance(other,(int, float)):
             return Distance(round(self.km / other, 2))
-        else:
-            raise TypeError
 
-    def __lt__(self, other):
+    def __lt__(self, other: int | float) -> Distance:
         if isinstance(other, Distance):
             value = other.km
         else:
@@ -54,10 +47,9 @@ class Distance:
                 value = float(other)
             except:
                 raise TypeError
-        distance = bool(self.km < value)
-        return distance
+        return self.km < value
 
-    def __gt__(self, other):
+    def __gt__(self, other: int | float) -> Distance:
         if isinstance(other, Distance):
             value = other.km
         else:
@@ -65,10 +57,9 @@ class Distance:
                 value = float(other)
             except:
                 raise TypeError
-        distance = bool(self.km > value)
-        return distance
+        return self.km > value
 
-    def __eq__(self, other):
+    def __eq__(self, other: int | float) -> Distance:
         if isinstance(other, Distance):
             value = other.km
         else:
@@ -76,10 +67,9 @@ class Distance:
                 value = float(other)
             except:
                 raise TypeError
-        distance = bool(self.km == value)
-        return distance
+        return self.km == value
 
-    def __le__(self, other):
+    def __le__(self, other: int | float) -> Distance:
         if isinstance(other, Distance):
             value = other.km
         else:
@@ -87,10 +77,9 @@ class Distance:
                 value = float(other)
             except:
                 raise TypeError
-        distance = bool(self.km <= value)
-        return distance
+        return self.km <= value
 
-    def __ge__(self, other):
+    def __ge__(self, other: int | float) -> Distance:
         if isinstance(other, Distance):
             value = other.km
         else:
@@ -98,5 +87,4 @@ class Distance:
                 value = float(other)
             except:
                 raise TypeError
-        distance = bool(self.km >= value)
-        return distance
+        return self.km >= value
